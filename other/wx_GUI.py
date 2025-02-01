@@ -17,7 +17,7 @@ class w(Frame):
                          size=(285, 230), pos=(800, 400),
                          style=DEFAULT_FRAME_STYLE & ~MAXIMIZE_BOX & ~RESIZE_BORDER)
         p = Panel(parent=self)
-        ok = Button(p, label='完成', pos=(100, 150))
+        ok = Button(p, label='开始游戏', pos=(100, 150))
         self.Bind(EVT_BUTTON, self.OK_EXIT, ok)
 
         self.statictext_1 = StaticText(p, label='请选择游戏难度：', pos=(10, 10))
@@ -84,9 +84,7 @@ def wx_gui():
     app.MainLoop()
 
 
-def difficultToChoose():
-    global difficulty, r_1, r_2, speed, gameControl, numberofplayers,n
-    wx_gui()
+def difficultToChoose(difficulty, gameControl):
     match(difficulty, gameControl):
         case "简单", "键盘":
             r_1 = 3
@@ -125,9 +123,13 @@ def difficultToChoose():
             growthOfLifeValueRatio = 0.215
             reduceLifeValueRatio = 0.458
 
-    p = [difficulty, gameControl, r_1, r_2, speed, int(
-        numberofplayers), growthOfLifeValueRatio, reduceLifeValueRatio]
+    p = [difficulty, gameControl, r_1, r_2, speed, growthOfLifeValueRatio, reduceLifeValueRatio]
     return p
 
 
-# difficultToChoose()
+def main():
+    global difficulty, r_1, r_2, speed, gameControl,n
+    wx_gui()
+    p = difficultToChoose(difficulty, gameControl)
+    return p
+

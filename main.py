@@ -1,4 +1,9 @@
-from init import *
+from other import maliang_GUI
+l = maliang_GUI.main()
+print(l)
+gameControl, r_1, r_2, speed, growthOfLifeValueRatio, reduceLifeValueRatio = l[1], l[2], l[3], l[4], l[5], l[6]
+speedIncrease = speed
+
 from cpgzh import *
 from random import randint
 TITLE = '飞机大战'  # 设置标题
